@@ -2,7 +2,7 @@ import { Box, Button, Text, TextField, Image } from '@skynexui/components';
 import { useRouter } from 'next/router'
 import appConfig from './config.json';
 import React, { useState } from 'react';
-import { ButtonSendSticker } from './buttonSendSticker';
+import { ButtonSendSticker } from './buttonSendSticker.js';
 
 function GlobalStyle() {
 
