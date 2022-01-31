@@ -1,5 +1,8 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components';
+import { useRouter } from 'next/router'
 import appConfig from './config.json';
+import React, { useState } from 'react';
+import { ButtonSendSticker } from './buttonSendSticker';
 
 function GlobalStyle() {
 
@@ -76,9 +79,13 @@ function Titulo(props) {
 //export default HomePage
 
 export default function PaginaInicial() {
-  const username = 'Thaisdss';
+  //const username = 'Thaisdss';
+  const [username, setUsername] = useState('Thaisdss');
+  const roteamento = useRouter();
+
 
   return (
+
     <>
       <GlobalStyle />
       <Box
@@ -107,6 +114,12 @@ export default function PaginaInicial() {
           {/* Formulário */}
           <Box
             as="form"
+            onSubmit={function (infosDoEvento) {
+              infosDoEvento.preventDefault();
+              console.log('Alguém submeteu o form')
+              roteamento.push(`/chat?username=${username}`);
+              //window.location.href = '/chat';
+            }}
             styleSheet={{
               display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
               width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
@@ -117,7 +130,36 @@ export default function PaginaInicial() {
               {appConfig.name}
             </Text>
 
+            {/*<input
+              type="text"
+              value={username}
+              onChange={function (event) {
+                //console.log('usuário digitou', event.target.value)
+                //Onde ta o valor?
+                const valor = event.target.value;
+                //Trocar o valor da variável
+                //Através do React e avise quem precisa
+                setUsername(valor);
+              }}
+
+            />*/}
             <TextField
+              value={username}
+              onChange={function (event) {
+                /*O onChange sempre recebe uma function, pode ser do modo como está acima ou pode
+              ser assim: onChange={() => {}}. Esse parâmetro event da function contem todas as informções
+              do evento, ou seja, do que está sendo mudado.
+              Esse event também pode ser digitado como: evento ou infosDoEvento*/
+                //Onde ta o valor?
+                const valor = event.target.value;
+                /*Para você acessar o valor do que está sendo mudado basta acessar a tag target dentro do event
+                (pois o event vai guardar sempre várias informações sobre aquilo, e dentro do target você pode acessar
+                o value que é o valor que está sendo digitado pelo usuário) */
+                //Trocar o valor da variável
+                //Através do React e avise quem precisa
+                setUsername(valor);
+              }}
+              //Estilização da caixa de texto
               fullWidth
               textFieldColors={{
                 neutral: {
@@ -180,7 +222,7 @@ export default function PaginaInicial() {
           </Box>
           {/* Photo Area */}
         </Box>
-      </Box>
+      </Box >
     </>
   );
 }
