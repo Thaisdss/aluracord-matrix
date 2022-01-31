@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'
 import appConfig from './config.json';
 import { createClient } from '@supabase/supabase-js';
-import { ButtonSendSticker } from './buttonSendSticker';
+import { ButtonSendSticker } from './buttonSendSticker.js';
 
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MzMzMjQwMCwiZXhwIjoxOTU4OTA4NDAwfQ.1DXO1aeMoOTsx3pij0GO5PD9q03JQMiddWq0EsLr5gI';
 const SUPABASE_URL = 'https://gfqooconejidmvnonhhs.supabase.co';
